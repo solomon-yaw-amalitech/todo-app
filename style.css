@@ -1,0 +1,116 @@
+*{
+    padding: 0;
+    margin: 0;
+    font-family: Josefin Sans;
+}
+
+.header {
+  width: 1280px;
+  height: 300px;
+background-image: url("/images/bg-desktop-light.jpg");
+margin-bottom: -3.3rem;
+}
+
+.title{
+color: #FFF;
+font-size: 40px;
+font-family: Josefin Sans;
+font-weight: 500;
+letter-spacing: 15px;
+padding-top:70px;
+padding-left:380px;
+padding-bottom: 20px;
+}
+
+.rounded-object{
+    width: 24px;
+    height: 24px;
+    border: 1px solid #E3E4F1;
+    position: absolute;
+    top: 178px;
+    left:395px;
+    border-radius: 100px;
+}
+
+#textinput{
+    width: 455px;
+    height: 64px;
+    font-family: Josefin Sans;
+    color: #9495A5;
+    font-size: 18px;
+    font-family: Josefin Sans;
+    letter-spacing: -0.25px;
+    outline:none;
+    border-radius: 5px;
+    border: none;
+    padding-left: 75px;
+    margin: 0rem auto 0rem auto ;
+    margin-left: 368px;
+    margin-top: 30px;
+}
+
+#textinput:focus{
+    color: #393A4B;
+    font-size: 18px;
+    font-family: Josefin Sans;
+    letter-spacing: -0.25px;
+}
+
+.todo{
+    border: 7px solid white;
+    border-radius: 5px;
+    width: 515px;
+    height: 400px;
+    margin: 0px auto 0px auto;
+}
+.todo-list{
+   
+   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+   margin: 0px auto 0px auto;
+   display: flex;
+   flex-direction: row;
+   justify-content: space-between  ;
+   padding: 20px;
+   background-color: #ffff;
+   align-items: center;
+   border-bottom: 1px solid #E3E4F1 ;
+   width: 480px;
+}
+
+.list_title{
+    margin-left: -140px ;
+}
+
+.check-list{
+    display: none;
+    /**pointer-events: none;**/
+}
+
+.svg_checkbox{
+    stroke:#968CF8;
+    width: 1.5rem;
+    height: 1.5rem; 
+    opacity: 0;
+}
+
+.border{
+    stroke: #968CF8;
+}
+
+input[type="checkbox"]:checked + span{
+  border: 1px solid #968CF8;
+  transition: border 0.3s linear;
+}
+
+input[type="checkbox"]:checked + span svg {
+ opacity: 1;
+display: block;
+transition: all .5s linear;
+}
+
+label{
+    border: 1px solid #968CF8 ;
+    width:24px;
+    height: 24px;
+    border-radius: 2rem;
+}
