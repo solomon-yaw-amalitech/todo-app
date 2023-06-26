@@ -18,7 +18,7 @@ font-family: Josefin Sans;
 font-weight: 500;
 letter-spacing: 15px;
 padding-top:70px;
-padding-left:380px;
+margin-left: 375px;
 padding-bottom: 20px;
 }
 
@@ -45,7 +45,7 @@ padding-bottom: 20px;
     border: none;
     padding-left: 75px;
     margin: 0rem auto 0rem auto ;
-    margin-left: 368px;
+    margin-left: 375px;
     margin-top: 30px;
 }
 
@@ -60,7 +60,6 @@ padding-bottom: 20px;
     border: 7px solid white;
     border-radius: 5px;
     width: 515px;
-    height: 400px;
     margin: 0px auto 0px auto;
 }
 .todo-list{
@@ -85,6 +84,7 @@ padding-bottom: 20px;
     display: none;
     /**pointer-events: none;**/
 }
+
 
 .svg_checkbox{
     stroke:#968CF8;
@@ -114,6 +114,7 @@ label{
     height: 24px;
     border-radius: 2rem;
 }
+
 
 .status{
     box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
@@ -168,6 +169,15 @@ letter-spacing: -0.194px;
 .clear{
     color: #9495A5;
 text-align: right;
+font-size: 14px;
+font-family: Josefin Sans;
+letter-spacing: -0.194px;
+}
+
+.footer{
+margin-top:40px;
+color: #9495A5;
+text-align: center;
 font-size: 14px;
 font-family: Josefin Sans;
 letter-spacing: -0.194px;
