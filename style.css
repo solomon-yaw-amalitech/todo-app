@@ -67,6 +67,7 @@ margin-left: 250px;
     line-height: normal;
     letter-spacing: -0.25px;
     outline: none;
+    background-color: #fff;
 }
 
 input::placeholder{
