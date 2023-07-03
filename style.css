@@ -223,8 +223,10 @@ padding-top: 50px;
 @media (min-width: 320px) and (max-width: 480px) {
   
     .header{
-        width: 400px;
+        width: 380px;
         padding-top: 50px;
+        margin: 0px auto;
+
     }
 
     .logo{
