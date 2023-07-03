@@ -1,3 +1,5 @@
+
+// Code for light mode
 document.querySelector(".light_mode").addEventListener("click",function(){
     document.body.style.background = "#171823";
     document.querySelector(".dark_mode").style.display ="block"; 
@@ -16,11 +18,11 @@ document.querySelector(".light_mode").addEventListener("click",function(){
     lists.classList.add("bg_list");
       
   }
-    
-    
-    
-}) 
+        
+});
 
+
+//code for light mode
 document.querySelector(".dark_mode").addEventListener("click",function(){
     document.body.style.background = "#fff";
     document.querySelector(".dark_mode").style.display ="none"; 
@@ -39,7 +41,5 @@ document.querySelector(".dark_mode").addEventListener("click",function(){
       
   }
     
-    
-    
-}) 
+}); 
 
