@@ -91,6 +91,7 @@ margin-top: 30px;
     width: 455px;
     height: 20px;
     background-color: #fff;
+    border-bottom: 1px solid #E3E4F1;;
 }
 label{
     border: 1px solid #968CF8 ;
@@ -130,3 +131,145 @@ margin-left: -90px;
     color: #FFF;   
 }
 
+.list_footer{
+    display: flex;
+    flex-direction: row;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    margin: 0px auto;
+    width: 495px;
+    height: 40px;
+    background-color: #fff;
+    padding-top: 20px;
+    justify-content: space-between;
+    
+}
+
+.status{
+    display: flex;
+    flex-direction: row;
+}
+
+.items_left{
+    padding-left: 25px;
+    color: #9495A5;
+    font-size: 14px;
+    font-family: Josefin Sans;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: -0.194px;
+}
+
+.all{
+padding-left: 15px;
+color: #3A7CFD;
+font-size: 14px;
+font-family: Josefin Sans;
+font-style: normal;
+font-weight: 700;
+line-height: normal;
+letter-spacing: -0.194px;
+}
+
+.active{
+    padding-left: 15px;
+    color: #9495A5;
+    font-size: 14px;
+    font-family: Josefin Sans;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    letter-spacing: -0.194px;
+}
+
+.completed{
+    padding-left: 15px;
+    color: #9495A5;
+    font-size: 14px;
+    font-family: Josefin Sans;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    letter-spacing: -0.194px;
+}
+
+.clear{
+    padding-right: 25px;
+    color: #9495A5;
+    text-align: right;
+    font-size: 14px;
+    font-family: Josefin Sans;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: -0.194px;
+}
+
+
+.footer{
+color: #9495A5;
+text-align: center;
+font-size: 14px;
+font-family: Josefin Sans;
+font-style: normal;
+font-weight: 400;
+line-height: normal;
+letter-spacing: -0.194px;
+padding-top: 50px;
+}
+
+
+/** Media queries **/
+@media (min-width: 320px) and (max-width: 480px) {
+  
+    .header{
+        width: 400px;
+        padding-top: 50px;
+    }
+
+    .logo{
+    font-size: 30px;
+    font-family: Josefin Sans;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    letter-spacing: 10px;
+    margin-left: -60px;
+    }
+
+    .light_mode{
+        margin-right: -45px;
+        
+    }
+    
+    .dark_mode{
+        margin-right: -45px;
+        
+    }
+
+    .text_input{
+        width: 300px;
+       height: 48px;
+    }
+
+    .list{
+        width: 287px;
+        height: 20px;
+
+    }
+
+    .list_footer{
+        width: 287px;
+        height: 20px;  
+    }
+    
+    
+  }
+
+  @media (min-width: 768px) and (max-width: 1024px) {
+  
+    .header{
+        width: 768px;
+    }
+    
+  }
