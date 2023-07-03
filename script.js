@@ -61,6 +61,8 @@ document.querySelector(".text_input").addEventListener("keyup",function( event){
    
    if(event.keyCode===13){
      addlist(listItem);
+     document.querySelector(".text_input").value=""; 
+     
    }
         
 
