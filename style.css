@@ -93,7 +93,7 @@ margin-top: 30px;
     height: 20px;
     background-color: #fff;
     border-bottom: 1px solid #E3E4F1;
-   
+    word-wrap: break-word;
 }
 label{
     border: 1px solid #968CF8 ;
@@ -127,6 +127,7 @@ font-weight: 400;
 line-height: normal;
 letter-spacing: -0.25px;
 margin-left: -90px;
+word-wrap: break-word;
 }
 
 .bg_list{
@@ -261,6 +262,17 @@ padding-top: 50px;
         width: 287px;
         height: 20px;
 
+    }
+
+    .list_title{
+color: #494C6B;
+font-size: 12px;
+font-family: Josefin Sans;
+font-style: normal;
+font-weight: 400;
+line-height: normal;
+letter-spacing: -0.167px;
+padding-left: 60px;
     }
 
     .list_footer{
