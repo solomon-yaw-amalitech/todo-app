@@ -24,6 +24,7 @@ font-weight: 700;
 line-height: normal;
 letter-spacing: 15px;
 margin-left: 250px;
+
 }
 
 .light_mode{
@@ -91,13 +92,15 @@ margin-top: 30px;
     width: 455px;
     height: 20px;
     background-color: #fff;
-    border-bottom: 1px solid #E3E4F1;;
+    border-bottom: 1px solid #E3E4F1;
+   
 }
 label{
     border: 1px solid #968CF8 ;
     width:24px;
     height: 24px;
     border-radius: 400px;
+   
 }
 
 .input_check{
@@ -263,6 +266,10 @@ padding-top: 50px;
     .list_footer{
         width: 287px;
         height: 20px;  
+    }
+
+    .svg_check{
+        margin-left: -360px;
     }
     
     
