@@ -11,6 +11,9 @@ document.querySelector(".light_mode").addEventListener("click",function(){
    const listFooterDiv = document.querySelector(".list_footer");
    listFooterDiv.style.background =" #25273D";
 
+   const listFooter2Div = document.querySelector(".list_footer2");
+   listFooter2Div.style.background = "#25273D";
+
    
     
    
@@ -39,6 +42,10 @@ document.querySelector(".dark_mode").addEventListener("click",function(){
 
    const listFooterDiv = document.querySelector(".list_footer");
    listFooterDiv.style.background =" #fff";
+
+   const listFooter2Div = document.querySelector(".list_footer2");
+   listFooter2Div.style.background = "#fff";
+   
 
    for(titles of listTitlePtag){
     titles.style.color = "#494C6B";

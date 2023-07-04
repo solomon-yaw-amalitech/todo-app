@@ -2,6 +2,11 @@
     padding: 0;
     margin: 0;
     font-family: Josefin Sans;
+    
+}
+
+body{
+    background-color: #FAFAFA;
 }
 
 .header{
@@ -148,6 +153,10 @@ word-wrap: break-word;
     
 }
 
+.list_footer2{
+    display: none;
+}
+
 .status{
     display: flex;
     flex-direction: row;
@@ -227,6 +236,7 @@ padding-top: 50px;
 @media (min-width: 320px) and (max-width: 480px) {
   
     .header{
+        height: 180px;
         width: 380px;
         padding-top: 50px;
         margin: 0px auto;
@@ -252,13 +262,18 @@ padding-top: 50px;
         margin-right: -45px;
         
     }
-
+     
+    .circle{
+        margin-top: 45px;
+    }
     .text_input{
-        width: 300px;
+        width: 260px;
        height: 48px;
+       margin-top: 35px;
     }
 
     .list{
+        margin-top: -10px;
         width: 287px;
         height: 20px;
 
@@ -272,12 +287,30 @@ font-style: normal;
 font-weight: 400;
 line-height: normal;
 letter-spacing: -0.167px;
-padding-left: 60px;
+padding-left: 90px;
+width:200px;
     }
 
     .list_footer{
-        width: 287px;
-        height: 20px;  
+        width: 328px;
+        height: 28px;  
+    }
+
+    .list_footer2{
+        width: 328px;
+        height: 28px; 
+        box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+        margin: 0px auto;
+        margin-top: 20px;
+        background-color: #fff;
+        height: 48px;
+        display: block;
+    }
+
+    .status{
+        position: absolute;
+        top:380px;
+        left: 100px;
     }
 
     .svg_check{
