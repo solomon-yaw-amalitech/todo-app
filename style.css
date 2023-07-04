@@ -295,9 +295,10 @@ width:200px;
         padding-top: 0px;
         display:flex;
         width: 328px;
-        height: 28px; 
+        height: 48px; 
         justify-content:space-between; 
         position: relative;
+        align-items: center;
       
     }
 
