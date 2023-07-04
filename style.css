@@ -292,8 +292,22 @@ width:200px;
     }
 
     .list_footer{
+        padding-top: 0px;
+        display:flex;
         width: 328px;
-        height: 28px;  
+        height: 28px; 
+        justify-content:space-between; 
+        position: relative;
+      
+    }
+
+    .items_left{
+        position: relative;
+        width: 600px;
+     
+    }
+    .clear{
+        width: 600px; 
     }
 
     .list_footer2{
@@ -307,10 +321,11 @@ width:200px;
         display: block;
     }
 
+
     .status{
-        position: absolute;
-        top:380px;
-        left: 100px;
+        position:relative;
+        top:70px;
+        left: 10px;
     }
 
     .svg_check{
