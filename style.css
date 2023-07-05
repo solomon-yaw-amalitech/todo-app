@@ -12,7 +12,6 @@ body{
 .header{
     background: url(images/bg-desktop-light.jpg);
     height: 230px;
-    width:1280px;
     display: flex;
     justify-content: space-around;
     padding-top: 70px;
@@ -157,11 +156,13 @@ word-wrap: break-word;
     background-color: #fff;
     padding-top: 20px;
     justify-content: space-between;
+    margin-bottom: 0px;
     
 }
 
 .list_footer2{
     display: none;
+    margin-top: 0px;
 }
 
 .status{
