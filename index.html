@@ -13,6 +13,8 @@
   <title>Frontend Mentor | Todo app</title>
 </head>
 <body>
+
+  <!-- Header -->
   <header class="header">
     <h1 class="logo">TODO</h1>
     <svg class="light_mode" width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -23,12 +25,16 @@
         </svg>
         
   </header>
-
+   
+  <!-- Text input section -->
   <section class="input">
+    <form action="">
     <span class="circle"></span>  
-    <input  class="text_input" type="text" placeholder="Create a new todo.." minlength="3" maxlength="36">
+    <input  class="text_input" type="text" placeholder="Create a new todo.." minlength="3" maxlength="36" required >
+  </form>
   </section>
 
+  <!-- Todo list section -->
   <section class="todo_list">
     <div class="list">
       <label for="checkbox">
@@ -91,6 +97,7 @@
     <div class="list_footer2"></div>
   </section>
 
+  <!-- fooer -->
   <footer class="footer">Drag and drop to reorder list</footer>
 
 
