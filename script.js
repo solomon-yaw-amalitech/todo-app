@@ -16,18 +16,20 @@ document.querySelector(".dark_mode").addEventListener("click",function(event){
 document.querySelector(".text_input").addEventListener("keyup",function( event){
 
    const listItem = event.target.value;
-   
-   if(event.keyCode===13){
-     addlist(listItem);
-     document.querySelector(".text_input").value=""; 
-
-     if(document.querySelector(".light_mode").clicked===true){
-      showDarkMode();
-
-     }
-
+   if(listItem.length>0){
+    if(event.keyCode===13){
+      addlist(listItem);
+      document.querySelector(".text_input").value=""; 
+ 
+      if(document.querySelector(".light_mode").clicked===true){
+       showDarkMode();
+ 
+      }
+ 
+    }
+ 
    }
-
+   
 }); 
 
 function addlist(list)
