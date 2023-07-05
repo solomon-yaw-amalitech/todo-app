@@ -1,77 +1,32 @@
 
-// Code for light mode
-document.querySelector(".light_mode").addEventListener("click",function(){
-    document.body.style.background = "#171823";
-    document.querySelector(".dark_mode").style.display ="block"; 
-    document.querySelector(".light_mode").style.display ="none";
-    document.querySelector(".header").style.background ="url(images/bg-desktop-dark.jpg)"; 
-    document.body.style.color = "#fff";
-    const listTitlePtag = document.querySelectorAll(".list_title");
-   const listDiv =  document.querySelectorAll(".list");
-   const listFooterDiv = document.querySelector(".list_footer");
-   listFooterDiv.style.background =" #25273D";
-
-   const listFooter2Div = document.querySelector(".list_footer2");
-   listFooter2Div.style.background = "#25273D";
-
-   
-    
-   
-
-   for(titles of listTitlePtag){
-    titles.style.color = "#fff";
-   }
-    
-   for(lists of listDiv){
-    lists.classList.add("bg_list");
-      
-  }
-        
+// Code for dark mode
+document.querySelector(".light_mode").addEventListener("click",function(event){
+   showDarkMode();        
 });
 
 
 //code for light mode
-document.querySelector(".dark_mode").addEventListener("click",function(){
-    document.body.style.background = "#fff";
-    document.body.style.color = "black";
-    document.querySelector(".dark_mode").style.display ="none"; 
-    document.querySelector(".light_mode").style.display ="block";
-    document.querySelector(".header").style.background ="url(images/bg-desktop-light.jpg)"; 
-    const listTitlePtag = document.querySelectorAll(".list_title");
-   const listDiv =  document.querySelectorAll(".list");
 
-   const listFooterDiv = document.querySelector(".list_footer");
-   listFooterDiv.style.background =" #fff";
-
-   const listFooter2Div = document.querySelector(".list_footer2");
-   listFooter2Div.style.background = "#fff";
-   
-
-   for(titles of listTitlePtag){
-    titles.style.color = "#494C6B";
-   }
-    
-   for(lists of listDiv){
-    lists.classList.remove("bg_list");
-      
-  }
-    
+document.querySelector(".dark_mode").addEventListener("click",function(event){
+    showLightMode();
 }); 
 
 //Event listener for textbox
 
 document.querySelector(".text_input").addEventListener("keyup",function( event){
-  console.log(event); 
-  
+
    const listItem = event.target.value;
-   console.log(listItem); 
    
    if(event.keyCode===13){
      addlist(listItem);
      document.querySelector(".text_input").value=""; 
-     
+
+     if(document.querySelector(".light_mode").clicked===true){
+      showDarkMode();
+
+     }
+
    }
-        
 
 }); 
 
@@ -108,4 +63,61 @@ function addlist(list)
 document.querySelector(".todo_list").insertAdjacentHTML("afterbegin",newHtml); 
 
 
+}
+
+function showDarkMode(){
+
+  document.body.style.background = "#171823";
+    document.querySelector(".dark_mode").style.display ="block"; 
+    document.querySelector(".light_mode").style.display ="none";
+    document.querySelector(".header").style.background ="url(images/bg-desktop-dark.jpg)"; 
+    document.body.style.color = "#fff";
+    const listTitlePtag = document.querySelectorAll(".list_title");
+   const listDiv =  document.querySelectorAll(".list");
+   const listFooterDiv = document.querySelector(".list_footer");
+   listFooterDiv.style.background =" #25273D";
+
+   const listFooter2Div = document.querySelector(".list_footer2");
+   listFooter2Div.style.background = "#25273D";
+
+   
+    
+   
+
+   for(titles of listTitlePtag){
+    titles.style.color = "#fff";
+   }
+    
+   for(lists of listDiv){
+    lists.classList.add("bg_list");
+      
+  }
+    
+}
+
+function showLightMode(){
+  document.body.style.background = "#fff";
+    document.body.style.color = "black";
+    document.querySelector(".dark_mode").style.display ="none"; 
+    document.querySelector(".light_mode").style.display ="block";
+    document.querySelector(".header").style.background ="url(images/bg-desktop-light.jpg)"; 
+    const listTitlePtag = document.querySelectorAll(".list_title");
+   const listDiv =  document.querySelectorAll(".list");
+
+   const listFooterDiv = document.querySelector(".list_footer");
+   listFooterDiv.style.background =" #fff";
+
+   const listFooter2Div = document.querySelector(".list_footer2");
+   listFooter2Div.style.background = "#fff";
+   
+
+   for(titles of listTitlePtag){
+    titles.style.color = "#494C6B";
+   }
+    
+   for(lists of listDiv){
+    lists.classList.remove("bg_list");
+      
+  }
+    
 }

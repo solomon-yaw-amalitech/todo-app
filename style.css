@@ -303,12 +303,12 @@ width:200px;
     }
 
     .items_left{
-        position: relative;
-        width: 600px;
+        font-size: 10px;  
      
     }
     .clear{
-        width: 600px; 
+         font-size: 10px; 
+         
     }
 
     .list_footer2{
