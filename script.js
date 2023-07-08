@@ -21,11 +21,10 @@ document.querySelector(".text_input").addEventListener("keyup",function( event){
       addlist(listItem);
       document.querySelector(".text_input").value=""; 
  
-      if(document.querySelector(".light_mode").clicked===true){
+      if(document.querySelector(".light_mode").clicked === true){
        showDarkMode();
  
-      }
- 
+      } 
     }
  
    }
