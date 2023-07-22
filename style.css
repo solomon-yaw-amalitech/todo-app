@@ -149,6 +149,11 @@ word-wrap: break-word;
     color: #FFF;   
 }
 
+.bg_list2{
+    background-color: #25273D;
+    color: #FFF;   
+}
+
 .list_footer{
      border-bottom-left-radius: 5px;
      border-bottom-right-radius: 5px;
@@ -242,6 +247,7 @@ font-weight: 400;
 line-height: normal;
 letter-spacing: -0.194px;
 padding-top: 50px;
+padding-bottom: 30px;
 }
 
 

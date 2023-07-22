@@ -38,7 +38,7 @@ document.querySelector(".text_input").addEventListener("keyup",function( event){
   if(listItem.length>0){
     if(event.keyCode===13){
      addlist(listItem);
-     changeCheckBox();
+     changeCheckBox();      
      document.querySelector(".text_input").value="";  
     }
 
@@ -48,7 +48,8 @@ document.querySelector(".text_input").addEventListener("keyup",function( event){
 
 function addlist(list)
 {
-
+const hasTextInput = document.querySelector(".text_input").value.length > 0;
+//<div class="list ${hasTextInput ? 'bg_list' : ''}"></div>
  const newHtml = `<div class="list">
  <label>
    <input type="checkbox" id="checkbox" class="custom-checkbox">
@@ -83,7 +84,18 @@ function showDarkMode(){
   listFooter2Div.style.background = "#25273D";
 
   
-   
+     // Check if there is a text input
+  const hasTextInput = document.querySelector(".text_input").value.length > 0;
+
+  // add bg_list class from the listDiv elements if there is a text input
+  for (const list of listDiv) {
+    if (hasTextInput) {
+      list.classList.add("bg_list");
+    } else {
+      list.classList.remove("bg_list");
+    }
+  }
+
   
 
   for(titles of listTitlePtag){
@@ -111,6 +123,19 @@ function showLightMode(){
 
   const listFooter2Div = document.querySelector(".list_footer2");
   listFooter2Div.style.background = "#fff";
+
+    // Check if there is a text input
+    const hasTextInput = document.querySelector(".text_input").value.length > 0;
+
+    // Remove bg_list class from the listDiv elements if there is a text input
+    for (const list of listDiv) {
+      if (hasTextInput) {
+        list.classList.remove("bg_list");
+      } else {
+        list.classList.add("bg_list");
+      }
+    }
+  
   
 
   for(titles of listTitlePtag){
