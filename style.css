@@ -103,7 +103,7 @@ input::placeholder{
    
 }
   .custom-checkbox:checked + .checkbox-image {
-    /* Add styles for checked image */
+    
   }
 .todo_list{
 margin: 0px auto;
