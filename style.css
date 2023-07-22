@@ -85,6 +85,26 @@ input::placeholder{
     color: #9495A5; 
 }
 
+.custom-checkbox {
+    display: none;
+  }
+  
+  .checkbox-image {
+    cursor: pointer;
+    width: 20px;
+    height: 20px;
+  }
+ 
+  label{
+    border: 1px solid #968CF8 ;
+    width:20px;
+    height: 20px;
+    border-radius: 400px;
+   
+}
+  .custom-checkbox:checked + .checkbox-image {
+    /* Add styles for checked image */
+  }
 .todo_list{
 margin: 0px auto;
 margin-top: 30px;
@@ -106,28 +126,6 @@ border-radius: 5px;
     background-color: #fff;
     border-bottom: 1px solid #E3E4F1;
     word-wrap: break-word;
-}
-label{
-    border: 1px solid #968CF8 ;
-    width:24px;
-    height: 24px;
-    border-radius: 400px;
-   
-}
-
-.input_check{
-       opacity: 0;
-}
-
-.svg_check{
-    opacity: 0;
-    position: absolute;
-    left: 413.5px;
-    transition: opacity 0.3s linear;
-}
-
-.input_check:checked + span .svg_check{
-    opacity: 1;
 }
 
 .list_title{

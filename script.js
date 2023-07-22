@@ -1,4 +1,18 @@
 
+//Event listener for custom checkbox
+const checkboxes = document.querySelectorAll('.custom-checkbox');
+checkboxes.forEach(checkbox => {
+  checkbox.addEventListener('change', (event) => {
+    // Code to handle checkbox change event
+    const checkboxImage = event.target.parentNode.querySelector('.checkbox-image');
+    if (event.target.checked) {
+      checkboxImage.src = '/images/check.png';
+    } else {
+      checkboxImage.src = '/images/circle-white.png';
+    }
+  });
+});
+
 // Code for dark mode
 document.querySelector(".light_mode").addEventListener("click",function(event){
   showDarkMode();        
@@ -14,19 +28,13 @@ document.querySelector(".dark_mode").addEventListener("click",function(event){
 //Event listener for textbox
 
 document.querySelector(".text_input").addEventListener("keyup",function( event){
-
+  event.preventDefault();
   const listItem = event.target.value;
   if(listItem.length>0){
-   if(event.keyCode===13){
+    if(event.keyCode===13){
      addlist(listItem);
-     document.querySelector(".text_input").value=""; 
-
-     if(document.querySelector(".light_mode").clicked===true){
-      showDarkMode();
-
-     }
-
-   }
+     document.querySelector(".text_input").value="";  
+    }
 
   }
   
@@ -37,29 +45,17 @@ function addlist(list)
 
  
  const newHtml = `<div class="list">
- <label for="checkbox">
-   <input class="input_check" type="checkbox" id="checkbox">
-   <span>
-     <svg class="svg_check" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-       <circle cx="12" cy="12" r="11.5" fill="white" stroke="#E3E4F1"/>
-       <circle cx="12" cy="12" r="12" fill="url(#paint0_linear_0_595)"/>
-       <path class="svg" d="M8 12.3041L10.6959 15L16.6959 9" stroke="white" stroke-width="2"/>
-       <defs>
-       <linearGradient id="paint0_linear_0_595" x1="-12" y1="12" x2="12" y2="36" gradientUnits="userSpaceOnUse">
-       <stop stop-color="#55DDFF"/>
-       <stop offset="1" stop-color="#C058F3"/>
-       </linearGradient>
-       </defs>
-       </svg>
-   </span>
+ <label for="myCheckbox">
+   <input type="checkbox" id="myCheckbox" style="display: none;">
+   <img src="/images/check.png" alt="Unchecked Image" width="25" height="25">
  </label>
- <p class="list_title">${list}</p>
+ <p class="list_title">Complete online Javascript Course</p>
  <svg class="cancel_list" width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
    <g id="Combined Shape 2">
    <path id="Combined Shape" fill-rule="evenodd" clip-rule="evenodd" d="M17.6777 0.707107L16.9706 0L8.83883 8.13173L0.707107 0L0 0.707107L8.13173 8.83883L0 16.9706L0.707106 17.6777L8.83883 9.54594L16.9706 17.6777L17.6777 16.9706L9.54594 8.83883L17.6777 0.707107Z" fill="#494C6B"/>
    </g>
    </svg>
-</div>
+</div>  
 `;
 
 document.querySelector(".todo_list").insertAdjacentHTML("afterbegin",newHtml); 
