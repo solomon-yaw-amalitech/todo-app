@@ -250,6 +250,10 @@ padding-top: 50px;
 padding-bottom: 30px;
 }
 
+.delete_list{
+    cursor: pointer;
+}
+
 
 /** Media queries **/
 @media (min-width: 320px) and (max-width: 480px) {

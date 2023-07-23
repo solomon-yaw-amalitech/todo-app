@@ -37,25 +37,38 @@ document.querySelector(".text_input").addEventListener("keyup",function( event){
   const listItem = event.target.value;
   if(listItem.length>0){
     if(event.keyCode===13){
-     addlist(listItem);
+      getItemsFromLocalStorage();
+     render();
+     addItemToLocalStorage(listItem);
      changeCheckBox();      
      document.querySelector(".text_input").value="";  
     }
 
   }
+  else{
+    alert("You must write something");
+  }
   
 }); 
 
-function addlist(list)
+function render()
 {
-const hasTextInput = document.querySelector(".text_input").value.length > 0;
+  let items = getItemsFromLocalStorage();
+  const todoList = document.querySelector(".todo_list");
+
+  // Clear the previous items in the todo list
+  todoList.innerHTML = "";
+
+  for(item of items){
+    
+    //const hasTextInput = document.querySelector(".text_input").value.length > 0;
 //<div class="list ${hasTextInput ? 'bg_list' : ''}"></div>
  const newHtml = `<div class="list">
  <label>
    <input type="checkbox" id="checkbox" class="custom-checkbox">
    <img src="./images/check.png" alt="Checkbox" class="checkbox-image">
- </label>      <p class="list_title">${list}</p>
- <svg class="cancel_list" width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+ </label>      <p class="list_title">${item.description}</p>
+ <svg onclick ="deleteListItem(event)" class="delete_list" width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
    <g id="Combined Shape 2">
    <path id="Combined Shape" fill-rule="evenodd" clip-rule="evenodd" d="M17.6777 0.707107L16.9706 0L8.83883 8.13173L0.707107 0L0 0.707107L8.13173 8.83883L0 16.9706L0.707106 17.6777L8.83883 9.54594L16.9706 17.6777L17.6777 16.9706L9.54594 8.83883L17.6777 0.707107Z" fill="#494C6B"/>
    </g>
@@ -63,7 +76,12 @@ const hasTextInput = document.querySelector(".text_input").value.length > 0;
 </div>
 `;
 
-document.querySelector(".todo_list").insertAdjacentHTML("afterbegin",newHtml); 
+
+// Append the new HTML to the todo list
+todoList.insertAdjacentHTML("afterbegin", newHtml); 
+
+    
+  }
 
 
 }
@@ -148,3 +166,65 @@ function showLightMode(){
  }
    
 }
+
+
+//get items from localstorage
+function getItemsFromLocalStorage(){
+  let items = localStorage.getItem("items");
+  
+  
+     if(items)
+     {
+      items = JSON.parse(items);
+     }
+  
+     else{
+      items = [];
+     }
+     
+     return items.sort();
+  
+     
+     
+  }
+
+   
+
+  // add items to localStorage
+  function addItemToLocalStorage(description)
+{
+  let items = getItemsFromLocalStorage();
+
+   items.push({
+    description
+   });
+
+   localStorage.setItem("items",JSON.stringify(items));
+   render();
+
+}
+
+// Function to delete a list item
+function deleteListItem(event) {
+  const listItem = event.target.parentElement;  
+  const description = listItem.querySelector('.list_title').textContent;
+  deleteItemFromLocalStorage(description);
+  listItem.remove();
+}
+
+
+// Function to delete an item from localStorage
+function deleteItemFromLocalStorage(description) {
+  let items = getItemsFromLocalStorage();
+
+  // Filter out the item with the matching description
+  items = items.filter(item => item.description !== description);
+
+  // Update the local storage with the updated items
+  localStorage.setItem('items', JSON.stringify(items));
+}
+
+  
+
+ 
+
