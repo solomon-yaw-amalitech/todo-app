@@ -253,6 +253,9 @@ padding-bottom: 30px;
 .delete_list{
     cursor: pointer;
 }
+.clear{
+    cursor: pointer;
+}
 
 
 /** Media queries **/

@@ -41,6 +41,7 @@ document.querySelector(".text_input").addEventListener("keyup",function( event){
      render();
      addItemToLocalStorage(listItem);
      changeCheckBox();      
+     itemsLeft();
      document.querySelector(".text_input").value="";  
     }
 
@@ -225,6 +226,20 @@ function deleteItemFromLocalStorage(description) {
 }
 
   
+function itemsLeft(){
+
+  const lists = getItemsFromLocalStorage();
+  const itemsLeft = document.querySelector(".items_left"); 
+  itemsLeft.textContent = `${lists.length} items left`; 
+  
+}
+//call itemsLeft Function
+itemsLeft();
+
+
+
+
+
 
  
 
