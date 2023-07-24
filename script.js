@@ -386,8 +386,9 @@ function clearCompletedItems() {
 
 // Update the local storage with the updated items
   localStorage.setItem('items', JSON.stringify(items));
-
   render();
+  itemsLeft();
+
 }
 
 // Add event listener to the "Clear Completed" button
