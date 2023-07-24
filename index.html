@@ -12,7 +12,7 @@
   <link rel="stylesheet" href="style.css">
   <title>Frontend Mentor | Todo app</title>
 </head>
-<body>
+<body onload="changeCheckBox()">
   <header class="header">
     <h1 class="logo">TODO</h1>
     <svg class="light_mode" width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -29,7 +29,7 @@
     <input  class="text_input" type="text" placeholder="Create a new todo.." minlength="3" maxlength="36">
   </section>
 
-  <section class="todo_list">
+  <section class="todo_list" >
     <!--<div class="list">
       <label>
         <input type="checkbox" id="checkbox" class="custom-checkbox">

@@ -200,6 +200,7 @@ font-style: normal;
 font-weight: 700;
 line-height: normal;
 letter-spacing: -0.194px;
+cursor: pointer;
 }
 
 .active{
@@ -211,6 +212,7 @@ letter-spacing: -0.194px;
     font-weight: 700;
     line-height: normal;
     letter-spacing: -0.194px;
+    cursor: pointer;
 }
 
 .completed{
@@ -222,6 +224,7 @@ letter-spacing: -0.194px;
     font-weight: 700;
     line-height: normal;
     letter-spacing: -0.194px;
+    cursor: pointer;
 }
 
 .clear{
@@ -234,6 +237,7 @@ letter-spacing: -0.194px;
     font-weight: 400;
     line-height: normal;
     letter-spacing: -0.194px;
+    cursor: pointer;
 }
 
 
@@ -257,6 +261,17 @@ padding-bottom: 30px;
     cursor: pointer;
 }
 
+.drag-over {
+    background-color: #f0f0f0;
+
+  }
+
+  .list.complete {
+    text-decoration: line-through;
+    opacity: 0.8; /* You can adjust the opacity for a faded effect */
+  }
+
+  
 
 /** Media queries **/
 @media (min-width: 320px) and (max-width: 480px) {

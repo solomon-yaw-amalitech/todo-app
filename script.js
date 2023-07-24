@@ -1,4 +1,5 @@
 
+changeCheckBox();
 //Event listener for custom checkbox
 function changeCheckBox(){
   const checkboxes = document.querySelectorAll('.custom-checkbox');
@@ -8,15 +9,19 @@ function changeCheckBox(){
       const checkboxImage = event.target.parentNode.querySelector('.checkbox-image');
       if (event.target.checked) {
         checkboxImage.src = './images/check.png';
+        event.target.parentNode.parentNode.classList.add("complete");
       } else {
         checkboxImage.src = './images/circle-white.png';
+        event.target.parentNode.parentNode.classList.remove("complete");
       }
+
     });
   });
-
-
   
 }
+
+
+
 
 // Code for dark mode
 document.querySelector(".light_mode").addEventListener("click",function(event){
@@ -34,6 +39,7 @@ document.querySelector(".dark_mode").addEventListener("click",function(event){
 
 document.querySelector(".text_input").addEventListener("keyup",function( event){
   event.preventDefault();
+  
   const listItem = event.target.value;
   if(listItem.length>0){
     if(event.keyCode===13){
@@ -41,8 +47,9 @@ document.querySelector(".text_input").addEventListener("keyup",function( event){
      render();
      addItemToLocalStorage(listItem);
      changeCheckBox();      
+     document.querySelector(".text_input").value=""; 
      itemsLeft();
-     document.querySelector(".text_input").value="";  
+     
     }
 
   }
@@ -64,7 +71,7 @@ function render()
     
     //const hasTextInput = document.querySelector(".text_input").value.length > 0;
 //<div class="list ${hasTextInput ? 'bg_list' : ''}"></div>
- const newHtml = `<div class="list">
+ const newHtml = `<div class="list" draggable="true">
  <label>
    <input type="checkbox" id="checkbox" class="custom-checkbox">
    <img src="./images/check.png" alt="Checkbox" class="checkbox-image">
@@ -81,7 +88,7 @@ function render()
 // Append the new HTML to the todo list
 todoList.insertAdjacentHTML("afterbegin", newHtml); 
 
-    
+draggableList();
   }
 
 
@@ -183,9 +190,8 @@ function getItemsFromLocalStorage(){
       items = [];
      }
      
-     return items.sort();
-  
-     
+     return items;
+   
      
   }
 
@@ -211,6 +217,7 @@ function deleteListItem(event) {
   const description = listItem.querySelector('.list_title').textContent;
   deleteItemFromLocalStorage(description);
   listItem.remove();
+  itemsLeft();
 }
 
 
@@ -236,8 +243,45 @@ function itemsLeft(){
 //call itemsLeft Function
 itemsLeft();
 
+//Drag and drop to reorder list
+// Variable to store the reference to the element being dragged
+let draggedItem = null;
 
+function draggableList() {
+  const lists = document.querySelectorAll('.list');
+  lists.forEach((list) => {
+    list.addEventListener('dragstart', dragStart);
+    list.addEventListener('dragover', dragOver);
+    list.addEventListener('drop', drop);
+  });
+}
 
+function dragStart(event) {
+  // Store the reference to the dragged element
+  draggedItem = event.target;
+}
+
+function dragOver(event) {
+  // Prevent default to enable drop
+  event.preventDefault();
+}
+
+function drop(event) {
+  // Get the target element to drop on
+  const dropTarget = event.target;
+
+  // Swap the positions of the dragged item and the drop target in the DOM
+  const parent = dropTarget.parentNode;
+  const next = dropTarget.nextElementSibling;
+
+  if (draggedItem !== dropTarget) {
+    parent.insertBefore(draggedItem, dropTarget);
+  } else if (next) {
+    parent.insertBefore(draggedItem, next);
+  } else {
+    parent.appendChild(draggedItem);
+  }
+}
 
 
 
