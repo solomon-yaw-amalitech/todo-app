@@ -1,24 +1,56 @@
+"use strict";
 
 changeCheckBox();
 //Event listener for custom checkbox
-function changeCheckBox(){
+function changeCheckBox() {
   const checkboxes = document.querySelectorAll('.custom-checkbox');
-  checkboxes.forEach(checkbox => {
+  checkboxes.forEach((checkbox, index) => {
     checkbox.addEventListener('change', (event) => {
-      // Code to handle checkbox change event
-      const checkboxImage = event.target.parentNode.querySelector('.checkbox-image');
-      if (event.target.checked) {
-        checkboxImage.src = './images/check.png';
-        event.target.parentNode.parentNode.classList.add("complete");
-      } else {
-        checkboxImage.src = './images/circle-white.png';
-        event.target.parentNode.parentNode.classList.remove("complete");
-      }
+      // Get the items from local storage
+      let items = getItemsFromLocalStorage();
 
+      // Update the 'completed' property of the corresponding item
+      items[index].completed = event.target.checked;
+
+      // Update the local storage with the updated items
+      localStorage.setItem('items', JSON.stringify(items));
+
+      // Update the checkbox image based on the checkbox state
+      const checkboxImage = event.target.parentNode.querySelector('.checkbox-image');
+      checkboxImage.src = event.target.checked ? './images/check.png' : './images/circle-white.png';
+
+      // Update the 'complete' class of the list item
+      const listItem = event.target.closest('.list');
+      listItem.classList.toggle('complete', event.target.checked);
+
+      // Update the number of items left
+      itemsLeft();
     });
   });
-  
 }
+
+function loadCheckboxState() {
+  const checkboxes = document.querySelectorAll('.custom-checkbox');
+  const items = getItemsFromLocalStorage();
+
+  checkboxes.forEach((checkbox, index) => {
+    // Set the checkbox state based on the 'completed' property in the local storage data
+    checkbox.checked = items[index].completed;
+
+    // Get the corresponding checkbox image element
+    const checkboxImage = checkbox.parentNode.querySelector('.checkbox-image');
+
+    // Set the checkbox image based on the checkbox state
+    if (checkbox.checked) {
+      checkboxImage.src = './images/check.png';
+      checkbox.parentNode.parentNode.classList.add('complete');
+    } else {
+      checkboxImage.src = './images/circle-white.png';
+      checkbox.parentNode.parentNode.classList.remove('complete');
+    }
+  });
+}
+
 
 
 
@@ -49,6 +81,9 @@ document.querySelector(".text_input").addEventListener("keyup",function( event){
      changeCheckBox();      
      document.querySelector(".text_input").value=""; 
      itemsLeft();
+
+     // Call the loadCheckboxState function to set the initial state on page load
+     loadCheckboxState();
      
     }
 
@@ -67,11 +102,11 @@ function render()
   // Clear the previous items in the todo list
   todoList.innerHTML = "";
 
-  for(item of items){
+  for(let item of items){
     
     //const hasTextInput = document.querySelector(".text_input").value.length > 0;
 //<div class="list ${hasTextInput ? 'bg_list' : ''}"></div>
- const newHtml = `<div class="list" draggable="true">
+ const newHtml = `<div class="list class="list ${item.completed ? 'complete' : ''}" "draggable="true">
  <label>
    <input type="checkbox" id="checkbox" class="custom-checkbox">
    <img src="./images/check.png" alt="Checkbox" class="checkbox-image">
@@ -89,6 +124,7 @@ function render()
 todoList.insertAdjacentHTML("afterbegin", newHtml); 
 
 draggableList();
+loadCheckboxState();
   }
 
 
@@ -203,7 +239,8 @@ function getItemsFromLocalStorage(){
   let items = getItemsFromLocalStorage();
 
    items.push({
-    description
+    description,
+    completed: false
    });
 
    localStorage.setItem("items",JSON.stringify(items));
@@ -282,6 +319,69 @@ function drop(event) {
     parent.appendChild(draggedItem);
   }
 }
+
+// Function to filter TODO items based on their completed status
+function filterItems(filterType) {
+  const items = getItemsFromLocalStorage();
+  let filteredItems;
+
+  switch (filterType) {
+    case "all":
+      filteredItems = items;
+      break;
+    case "active":
+      filteredItems = items.filter(item => !item.completed);
+      break;  
+    case "completed":
+      filteredItems = items.filter(item => item.completed);
+      break;
+    default:
+      filteredItems = items;
+  }
+
+  return filteredItems;
+}
+
+// Function to update the TODO list based on the selected filter
+function updateFilteredList(filterType) {
+  const todoList = document.querySelector(".todo_list");
+  todoList.innerHTML = "";
+
+  const filteredItems = filterItems(filterType);
+  for (const item of filteredItems) {
+    const newHtml = `<div class="list ${item.completed ? 'complete' : ''}" draggable="true">
+    <label>
+    <input type="checkbox" id="checkbox" class="custom-checkbox">
+    <img src="./images/check.png" alt="Checkbox" class="checkbox-image">
+  </label>      <p class="list_title">${item.description}</p>
+  <svg onclick ="deleteListItem(event)" class="delete_list" width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <g id="Combined Shape 2">
+    <path id="Combined Shape" fill-rule="evenodd" clip-rule="evenodd" d="M17.6777 0.707107L16.9706 0L8.83883 8.13173L0.707107 0L0 0.707107L8.13173 8.83883L0 16.9706L0.707106 17.6777L8.83883 9.54594L16.9706 17.6777L17.6777 16.9706L9.54594 8.83883L17.6777 0.707107Z" fill="#494C6B"/>
+    </g>
+    </svg>
+ </div>`;
+    todoList.insertAdjacentHTML("beforeend", newHtml);
+  }
+  loadCheckboxState()
+  draggableList();
+}
+
+document.querySelectorAll(".status p").forEach(filterOption => {
+  filterOption.addEventListener("click", function () {
+    const filterType = this.classList.contains("all")
+      ? "all"
+      : this.classList.contains("active")
+      ? "active"
+      : "completed";
+    updateFilteredList(filterType);
+    changeCheckBox();
+        // Call the loadCheckboxState function to set the initial state on page load
+        loadCheckboxState();  
+  });
+});
+
+
+
 
 
 

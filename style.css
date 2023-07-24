@@ -268,7 +268,19 @@ padding-bottom: 30px;
 
   .list.complete {
     text-decoration: line-through;
-    opacity: 0.8; /* You can adjust the opacity for a faded effect */
+    color: #D1D2DA;
+    
+  }
+
+  .completed_with_color{
+    font-family: Josefin Sans;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: -0.25px;
+    text-decoration-line: strikethrough;
+    color: #D1D2DA;
   }
 
   
