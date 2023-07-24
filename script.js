@@ -1,4 +1,5 @@
 "use strict";
+loadCheckboxState();
 
 changeCheckBox();
 //Event listener for custom checkbox
@@ -23,6 +24,14 @@ function changeCheckBox() {
       const listItem = event.target.closest('.list');
       listItem.classList.toggle('complete', event.target.checked);
 
+      const listTitle = listItem.querySelector('.list_title');
+       // Toggle the "completed_with_color" class based on checkbox state
+       if (event.target.checked) {
+        listTitle.classList.add('completed_with_color');
+      } else {
+        listTitle.classList.remove('completed_with_color');
+      }
+
       // Update the number of items left
       itemsLeft();
     });
@@ -44,6 +53,8 @@ function loadCheckboxState() {
     if (checkbox.checked) {
       checkboxImage.src = './images/check.png';
       checkbox.parentNode.parentNode.classList.add('complete');
+      checkbox.parentNode.parentNode.classList.add('completed_with_color');
+      
     } else {
       checkboxImage.src = './images/circle-white.png';
       checkbox.parentNode.parentNode.classList.remove('complete');
@@ -380,6 +391,7 @@ document.querySelectorAll(".status p").forEach(filterOption => {
   });
 });
 
+//Function to clear completed list
 function clearCompletedItems() {
   let items = getItemsFromLocalStorage();
   items = items.filter(item => !item.completed);
@@ -391,7 +403,7 @@ function clearCompletedItems() {
 
 }
 
-// Add event listener to the "Clear Completed" button
+// Event listener to the "Clear Completed" button
 document.querySelector(".clear").addEventListener("click", clearCompletedItems);
 
 
