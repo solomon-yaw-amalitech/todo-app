@@ -380,6 +380,18 @@ document.querySelectorAll(".status p").forEach(filterOption => {
   });
 });
 
+function clearCompletedItems() {
+  let items = getItemsFromLocalStorage();
+  items = items.filter(item => !item.completed);
+
+// Update the local storage with the updated items
+  localStorage.setItem('items', JSON.stringify(items));
+
+  render();
+}
+
+// Add event listener to the "Clear Completed" button
+document.querySelector(".clear").addEventListener("click", clearCompletedItems);
 
 
 
