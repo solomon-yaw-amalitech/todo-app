@@ -160,26 +160,22 @@ function showDarkMode(){
      // Check if there is a text input
   const hasTextInput = document.querySelector(".text_input").value.length > 0;
 
-  // add bg_list class from the listDiv elements if there is a text input
   for (const list of listDiv) {
-    if (hasTextInput) {
       list.classList.add("bg_list");
-    } else {
-      list.classList.remove("bg_list");
+  
     }
-  }
 
   
-
   for(titles of listTitlePtag){
-   titles.style.color = "#fff";
+   titles.style.color = "#ffff";
   }
    
   for(lists of listDiv){
    lists.classList.add("bg_list");
      
  }
-   
+
+ loadCheckboxState();  
 }
 
 function showLightMode(){
@@ -200,13 +196,10 @@ function showLightMode(){
     // Check if there is a text input
     const hasTextInput = document.querySelector(".text_input").value.length > 0;
 
-    // Remove bg_list class from the listDiv elements if there is a text input
+    // Remove bg_list class from the listDiv 
     for (const list of listDiv) {
-      if (hasTextInput) {
+    
         list.classList.remove("bg_list");
-      } else {
-        list.classList.add("bg_list");
-      }
     }
   
   
