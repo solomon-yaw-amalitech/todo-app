@@ -142,6 +142,7 @@ line-height: normal;
 letter-spacing: -0.25px;
 margin-left: -90px;
 word-wrap: break-word;
+cursor: pointer;
 }
 
 .bg_list{

@@ -152,6 +152,7 @@ function showDarkMode(){
 
   const listFooter2Div = document.querySelector(".list_footer2");
   listFooter2Div.style.background = "#25273D";
+  
 
   
      // Check if there is a text input
@@ -172,8 +173,7 @@ function showDarkMode(){
   }
    
   for(lists of listDiv){
-   lists.classList.add("bg_list");
-     
+    lists.classList.add("bg_list");
  }
 
  loadCheckboxState();  
