@@ -67,16 +67,13 @@ function loadCheckboxState() {
 
 
 // Code for dark mode
-document.querySelector(".light_mode").addEventListener("click",function(event){
-  showDarkMode();        
-});
+document.querySelector(".light_mode").addEventListener("click",showDarkMode);
+
 
 
 //code for light mode
 
-document.querySelector(".dark_mode").addEventListener("click",function(event){
-   showLightMode();
-}); 
+document.querySelector(".dark_mode").addEventListener("click",showLightMode)
 
 //Event listener for textbox
 
@@ -162,8 +159,12 @@ function showDarkMode(){
 
   for (const list of listDiv) {
       list.classList.add("bg_list");
-  
+
+      if(hasTextInput){
+        list.classList.add("bg_list"); 
+      }
     }
+
 
   
   for(titles of listTitlePtag){
