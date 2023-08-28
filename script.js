@@ -1,12 +1,27 @@
 "use strict";
 loadCheckboxState();
 
+//DarkMode
+document
+  .getElementById("toggle-checkbox")
+  .addEventListener("change", function () {
+    document.body.classList.toggle("dark");
+    document.querySelector(".list_footer").classList.toggle("list-dark");
+    document.querySelector(".header").classList.toggle("bg-image");
+
+    const list = document.querySelectorAll(".list");
+
+    for (let lists of list) {
+      lists.classList.toggle("list-dark");
+    }
+  });
+
 changeCheckBox();
 //Event listener for custom checkbox
 function changeCheckBox() {
-  const checkboxes = document.querySelectorAll('.custom-checkbox');
+  const checkboxes = document.querySelectorAll(".custom-checkbox");
   checkboxes.forEach((checkbox, index) => {
-    checkbox.addEventListener('change', (event) => {
+    checkbox.addEventListener("change", (event) => {
       // Get the items from local storage
       let items = getItemsFromLocalStorage();
 
@@ -14,22 +29,23 @@ function changeCheckBox() {
       items[index].completed = event.target.checked;
 
       // Update the local storage with the updated items
-      localStorage.setItem('items', JSON.stringify(items));
+      localStorage.setItem("items", JSON.stringify(items));
 
       // Update the checkbox image based on the checkbox state
-      const checkboxImage = event.target.parentNode.querySelector('.checkbox-image');
-      checkboxImage.src = event.target.checked ? './images/check.png' : './images/circle-white.png';
+      const checkboxImage =
+        event.target.parentNode.querySelector(".checkbox-image");
+      checkboxImage.src = event.target.checked
+        ? "./images/check.png"
+        : "./images/circle-white.png";
 
       // Update the 'complete' class of the list item
-      const listItem = event.target.closest('.list');
-      listItem.classList.toggle('complete', event.target.checked);
+      const listItem = event.target.closest(".list");
+      listItem.classList.toggle("complete", event.target.checked);
 
-      const listTitle = listItem.querySelector('.list_title');
-       // Toggle the "completed_with_color" class based on checkbox state
-       if (event.target.checked) {
-        listTitle.classList.add('completed_with_color');
-      } else {
-        listTitle.classList.remove('completed_with_color');
+      const listTitle = listItem.querySelector(".list_title");
+      // Toggle the "completed_with_color" class based on checkbox state
+      if (event.target.checked) {
+        listTitle.classList.toggle("completed_with_color");
       }
 
       // Update the number of items left
@@ -39,7 +55,7 @@ function changeCheckBox() {
 }
 
 function loadCheckboxState() {
-  const checkboxes = document.querySelectorAll('.custom-checkbox');
+  const checkboxes = document.querySelectorAll(".custom-checkbox");
   const items = getItemsFromLocalStorage();
 
   checkboxes.forEach((checkbox, index) => {
@@ -47,74 +63,58 @@ function loadCheckboxState() {
     checkbox.checked = items[index].completed;
 
     // Get the corresponding checkbox image element
-    const checkboxImage = checkbox.parentNode.querySelector('.checkbox-image');
+    const checkboxImage = checkbox.parentNode.querySelector(".checkbox-image");
 
     // Set the checkbox image based on the checkbox state
     if (checkbox.checked) {
-      checkboxImage.src = './images/check.png';
-      checkbox.parentNode.parentNode.classList.add('complete');
-      checkbox.parentNode.parentNode.classList.add('completed_with_color');
-      
+      checkboxImage.src = "./images/check.png";
+      checkbox.parentNode.parentNode.classList.add("complete");
+      checkbox.parentNode.parentNode.classList.add("completed_with_color");
     } else {
-      checkboxImage.src = './images/circle-white.png';
-      checkbox.parentNode.parentNode.classList.remove('complete');
+      checkboxImage.src = "./images/circle-white.png";
+      checkbox.parentNode.parentNode.classList.remove("complete");
     }
   });
 }
 
-
-
-
-
-// Code for dark mode
-document.querySelector(".light_mode").addEventListener("click",showDarkMode);
-
-
-
-//code for light mode
-
-document.querySelector(".dark_mode").addEventListener("click",showLightMode)
-
 //Event listener for textbox
 
-document.querySelector(".text_input").addEventListener("keyup",function( event){
-  event.preventDefault();
-  
-  const listItem = event.target.value;
-  if(listItem.length>0){
-    if(event.keyCode===13){
-      getItemsFromLocalStorage();
-     render();
-     addItemToLocalStorage(listItem);
-     changeCheckBox();      
-     document.querySelector(".text_input").value=""; 
-     itemsLeft();
+document
+  .querySelector(".text_input")
+  .addEventListener("keyup", function (event) {
+    event.preventDefault();
 
-     // Call the loadCheckboxState function to set the initial state on page load
-     loadCheckboxState();
-     
+    const listItem = event.target.value;
+    if (listItem.length > 0) {
+      if (event.keyCode === 13) {
+        getItemsFromLocalStorage();
+        render();
+        addItemToLocalStorage(listItem);
+        changeCheckBox();
+        document.querySelector(".text_input").value = "";
+        itemsLeft();
+
+        // Call the loadCheckboxState function to set the initial state on page load
+        loadCheckboxState();
+      }
+    } else {
+      alert("You must write something");
     }
+  });
 
-  }
-  else{
-    alert("You must write something");
-  }
-  
-}); 
-
-function render()
-{
+function render() {
   let items = getItemsFromLocalStorage();
   const todoList = document.querySelector(".todo_list");
 
   // Clear the previous items in the todo list
   todoList.innerHTML = "";
 
-  for(let item of items){
-    
+  for (let item of items) {
     //const hasTextInput = document.querySelector(".text_input").value.length > 0;
-//<div class="list ${hasTextInput ? 'bg_list' : ''}"></div>
- const newHtml = `<div class="list class="list ${item.completed ? 'complete' : ''}" "draggable="true">
+    //<div class="list ${hasTextInput ? 'bg_list' : ''}"></div>
+    const newHtml = `<div class="list class="list ${
+      item.completed ? "complete" : ""
+    }" "draggable="true">
  <label>
    <input type="checkbox" id="checkbox" class="custom-checkbox">
    <img src="./images/check.png" alt="Checkbox" class="checkbox-image">
@@ -127,160 +127,64 @@ function render()
 </div>
 `;
 
+    // Append the new HTML to the todo list
+    todoList.insertAdjacentHTML("afterbegin", newHtml);
 
-// Append the new HTML to the todo list
-todoList.insertAdjacentHTML("afterbegin", newHtml); 
-
-draggableList();
-loadCheckboxState();
+    draggableList();
+    loadCheckboxState();
   }
-
-
 }
-
-function showDarkMode(){
-
- document.body.style.background = "#171823";
-   document.querySelector(".dark_mode").style.display ="block"; 
-   document.querySelector(".light_mode").style.display ="none";
-   document.querySelector(".header").style.background ="url(images/bg-desktop-dark.jpg)"; 
-   document.body.style.color = "#fff";
-   const listTitlePtag = document.querySelectorAll(".list_title");
-  const listDiv =  document.querySelectorAll(".list");
-  const listFooterDiv = document.querySelector(".list_footer");
-  listFooterDiv.style.background =" #25273D";
-
-  const listFooter2Div = document.querySelector(".list_footer2");
-  listFooter2Div.style.background = "#25273D";
-  
-
-  
-     // Check if there is a text input
-  const hasTextInput = document.querySelector(".text_input").value.length > 0;
-
-  for (const list of listDiv) {
-      list.classList.add("bg_list");
-
-      if(hasTextInput){
-        list.classList.add("bg_list"); 
-      }
-    }
-
-
-  
-  for(titles of listTitlePtag){
-   titles.style.color = "#ffff";
-  }
-   
-  for(lists of listDiv){
-    lists.classList.add("bg_list");
- }
-
- loadCheckboxState();  
-}
-
-function showLightMode(){
- document.body.style.background = "#fff";
-   document.body.style.color = "black";
-   document.querySelector(".dark_mode").style.display ="none"; 
-   document.querySelector(".light_mode").style.display ="block";
-   document.querySelector(".header").style.background ="url(images/bg-desktop-light.jpg)"; 
-   const listTitlePtag = document.querySelectorAll(".list_title");
-  const listDiv =  document.querySelectorAll(".list");
-
-  const listFooterDiv = document.querySelector(".list_footer");
-  listFooterDiv.style.background =" #fff";
-
-  const listFooter2Div = document.querySelector(".list_footer2");
-  listFooter2Div.style.background = "#fff";
-
-    // Check if there is a text input
-    const hasTextInput = document.querySelector(".text_input").value.length > 0;
-
-    // Remove bg_list class from the listDiv 
-    for (const list of listDiv) {
-    
-        list.classList.remove("bg_list");
-    }
-  
-  
-
-  for(titles of listTitlePtag){
-   titles.style.color = "#494C6B";
-  }
-   
-  for(lists of listDiv){
-   lists.classList.remove("bg_list");
-     
- }
-   
-}
-
 
 //get items from localstorage
-function getItemsFromLocalStorage(){
+function getItemsFromLocalStorage() {
   let items = localStorage.getItem("items");
-  
-  
-     if(items)
-     {
-      items = JSON.parse(items);
-     }
-  
-     else{
-      items = [];
-     }
-     
-     return items;
-   
-     
+
+  if (items) {
+    items = JSON.parse(items);
+  } else {
+    items = [];
   }
 
-   
+  return items;
+}
 
-  // add items to localStorage
-  function addItemToLocalStorage(description)
-{
+// add items to localStorage
+function addItemToLocalStorage(description) {
   let items = getItemsFromLocalStorage();
 
-   items.push({
+  items.push({
     description,
-    completed: false
-   });
+    completed: false,
+  });
 
-   localStorage.setItem("items",JSON.stringify(items));
-   render();
-
+  localStorage.setItem("items", JSON.stringify(items));
+  render();
 }
 
 // Function to delete a list item
 function deleteListItem(event) {
-  const listItem = event.target.parentElement;  
-  const description = listItem.querySelector('.list_title').textContent;
+  const listItem = event.target.parentElement;
+  const description = listItem.querySelector(".list_title").textContent;
   deleteItemFromLocalStorage(description);
   listItem.remove();
   itemsLeft();
 }
-
 
 // Function to delete an item from localStorage
 function deleteItemFromLocalStorage(description) {
   let items = getItemsFromLocalStorage();
 
   // Filter out the item with the matching description
-  items = items.filter(item => item.description !== description);
+  items = items.filter((item) => item.description !== description);
 
   // Update the local storage with the updated items
-  localStorage.setItem('items', JSON.stringify(items));
+  localStorage.setItem("items", JSON.stringify(items));
 }
 
-  
-function itemsLeft(){
-
+function itemsLeft() {
   const lists = getItemsFromLocalStorage();
-  const itemsLeft = document.querySelector(".items_left"); 
-  itemsLeft.textContent = `${lists.length} items left`; 
-  
+  const itemsLeft = document.querySelector(".items_left");
+  itemsLeft.textContent = `${lists.length} items left`;
 }
 //call itemsLeft Function
 itemsLeft();
@@ -290,11 +194,11 @@ itemsLeft();
 let draggedItem = null;
 
 function draggableList() {
-  const lists = document.querySelectorAll('.list');
+  const lists = document.querySelectorAll(".list");
   lists.forEach((list) => {
-    list.addEventListener('dragstart', dragStart);
-    list.addEventListener('dragover', dragOver);
-    list.addEventListener('drop', drop);
+    list.addEventListener("dragstart", dragStart);
+    list.addEventListener("dragover", dragOver);
+    list.addEventListener("drop", drop);
   });
 }
 
@@ -335,10 +239,10 @@ function filterItems(filterType) {
       filteredItems = items;
       break;
     case "active":
-      filteredItems = items.filter(item => !item.completed);
-      break;  
+      filteredItems = items.filter((item) => !item.completed);
+      break;
     case "completed":
-      filteredItems = items.filter(item => item.completed);
+      filteredItems = items.filter((item) => item.completed);
       break;
     default:
       filteredItems = items;
@@ -354,7 +258,9 @@ function updateFilteredList(filterType) {
 
   const filteredItems = filterItems(filterType);
   for (const item of filteredItems) {
-    const newHtml = `<div class="list ${item.completed ? 'complete' : ''}" draggable="true">
+    const newHtml = `<div class="list ${
+      item.completed ? "complete" : ""
+    }" draggable="true">
     <label>
     <input type="checkbox" id="checkbox" class="custom-checkbox">
     <img src="./images/check.png" alt="Checkbox" class="checkbox-image">
@@ -367,11 +273,11 @@ function updateFilteredList(filterType) {
  </div>`;
     todoList.insertAdjacentHTML("beforeend", newHtml);
   }
-  loadCheckboxState()
+  loadCheckboxState();
   draggableList();
 }
 
-document.querySelectorAll(".status p").forEach(filterOption => {
+document.querySelectorAll(".status p").forEach((filterOption) => {
   filterOption.addEventListener("click", function () {
     const filterType = this.classList.contains("all")
       ? "all"
@@ -380,29 +286,21 @@ document.querySelectorAll(".status p").forEach(filterOption => {
       : "completed";
     updateFilteredList(filterType);
     changeCheckBox();
-        // Call the loadCheckboxState function to set the initial state on page load
-        loadCheckboxState();  
+    // Call the loadCheckboxState function to set the initial state on page load
+    loadCheckboxState();
   });
 });
 
 //Function to clear completed list
 function clearCompletedItems() {
   let items = getItemsFromLocalStorage();
-  items = items.filter(item => !item.completed);
+  items = items.filter((item) => !item.completed);
 
-// Update the local storage with the updated items
-  localStorage.setItem('items', JSON.stringify(items));
+  // Update the local storage with the updated items
+  localStorage.setItem("items", JSON.stringify(items));
   render();
   itemsLeft();
-
 }
 
 // Event listener to the "Clear Completed" button
 document.querySelector(".clear").addEventListener("click", clearCompletedItems);
-
-
-
-
-
- 
-
