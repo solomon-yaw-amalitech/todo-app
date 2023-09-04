@@ -13,6 +13,8 @@ body {
   --gunmetal-75: hsla(212, 14%, 75%, 1);
   --sky-blue-75: hsla(201, 80%, 75%, 1);
   --sky-blue-60: hsla(201, 80%, 60%, 1);
+  --dark: #25273d;
+  --dark2: #171823;
 }
 
 .header {
@@ -464,12 +466,12 @@ label:hover {
 
 /**Dark mode**/
 .dark {
-  background-color: #171823;
+  background: var(--dark2);
 }
 
 .list-dark {
   border-radius: 5px;
-  background: #25273d;
+  background: var(--dark);
   box-shadow: 0px 35px 50px -15px rgba(0, 0, 0, 0.5);
 }
 
