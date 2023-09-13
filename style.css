@@ -116,11 +116,12 @@ label:hover {
   margin-top: 30px;
   border-radius: 5px;
 }
+
 .list {
   border-radius: 5px;
   padding: 20px;
   display: flex;
-  justify-content: space-between;
+  justify-content: left;
   justify-items: center;
   align-items: center;
   flex-direction: row;
@@ -133,6 +134,14 @@ label:hover {
   word-wrap: break-word;
 }
 
+.list .delete_list {
+  display: none;
+}
+
+.list:hover .delete_list {
+  display: block;
+}
+
 .list_title {
   color: #494c6b;
   font-size: 18px;
@@ -141,9 +150,9 @@ label:hover {
   font-weight: 400;
   line-height: normal;
   letter-spacing: -0.25px;
-  margin-left: -90px;
   word-wrap: break-word;
   cursor: pointer;
+  margin-left: 30px;
 }
 
 .bg_list {
@@ -256,6 +265,7 @@ label:hover {
 
 .delete_list {
   cursor: pointer;
+  margin-left: 355px;
 }
 .clear {
   cursor: pointer;
