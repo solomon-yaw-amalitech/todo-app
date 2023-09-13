@@ -135,6 +135,12 @@ function render() {
   }
 }
 
+// Call the renderTodoList function on page load
+window.onload = function () {
+  render();
+  changeCheckBox();
+};
+
 //get items from localstorage
 function getItemsFromLocalStorage() {
   let items = localStorage.getItem("items");
@@ -182,9 +188,14 @@ function deleteItemFromLocalStorage(description) {
 }
 
 function itemsLeft() {
-  const lists = getItemsFromLocalStorage();
+  const items = getItemsFromLocalStorage();
+  const notCompletedItems = items.filter((item) => !item.completed);
+  const itemsLeftCount = notCompletedItems.length;
+
   const itemsLeft = document.querySelector(".items_left");
-  itemsLeft.textContent = `${lists.length} items left`;
+  itemsLeft.textContent = `${itemsLeftCount} item${
+    itemsLeftCount === 1 ? "" : "s"
+  } left`;
 }
 //call itemsLeft Function
 itemsLeft();
