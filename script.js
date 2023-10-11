@@ -59,7 +59,7 @@ function loadCheckboxState() {
   const items = getItemsFromLocalStorage();
 
   checkboxes.forEach((checkbox, index) => {
-    // Set the checkbox state based on the 'completed' property in the local storage data
+    // Check the checkbox only if the item is completed
     checkbox.checked = items[index].completed;
 
     // Get the corresponding checkbox image element
@@ -68,14 +68,17 @@ function loadCheckboxState() {
     // Set the checkbox image based on the checkbox state
     if (checkbox.checked) {
       checkboxImage.src = "./images/check.png";
-      checkbox.parentNode.parentNode.classList.add("complete");
-      checkbox.parentNode.parentNode.classList.add("completed_with_color");
     } else {
       checkboxImage.src = "./images/circle-white.png";
-      checkbox.parentNode.parentNode.classList.remove("complete");
     }
   });
 }
+
+// Add an event listener to update checkboxes when the filter changes to "Active"
+document.querySelector(".status .active").addEventListener("click", () => {
+  updateFilteredList("active");
+  changeCheckBox(); // This will call loadCheckboxState for the "Active" filter
+});
 
 //Event listener for textbox
 
@@ -250,7 +253,7 @@ function filterItems(filterType) {
       filteredItems = items;
       break;
     case "active":
-      filteredItems = items.filter((item) => !item.completed);
+      filteredItems = items.filter((item) => !item.completed); // Only non-completed items for "Active" state
       break;
     case "completed":
       filteredItems = items.filter((item) => item.completed);
@@ -276,12 +279,13 @@ function updateFilteredList(filterType) {
     <input type="checkbox" id="checkbox" class="custom-checkbox">
     <img src="./images/check.png" alt="Checkbox" class="checkbox-image">
   </label>      <p class="list_title">${item.description}</p>
-  <svg onclick ="deleteListItem(event)" class="delete_list" width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <svg onclick="deleteListItem(event)" class="delete_list" width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
     <g id="Combined Shape 2">
     <path id="Combined Shape" fill-rule="evenodd" clip-rule="evenodd" d="M17.6777 0.707107L16.9706 0L8.83883 8.13173L0.707107 0L0 0.707107L8.13173 8.83883L0 16.9706L0.707106 17.6777L8.83883 9.54594L16.9706 17.6777L17.6777 16.9706L9.54594 8.83883L17.6777 0.707107Z" fill="#494C6B"/>
     </g>
     </svg>
  </div>`;
+
     todoList.insertAdjacentHTML("beforeend", newHtml);
   }
   loadCheckboxState();
